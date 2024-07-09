@@ -9,6 +9,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"go.uber.org/zap"
 )
 
@@ -20,6 +21,13 @@ type store interface {
 type API struct {
 	store  store
 	logger *zap.Logger
+}
+
+func NewAPI(pool *pgxpool.Pool, logger *zap.Logger) API {
+	return API{
+		pgstore.New(pool),
+		logger,
+	}
 }
 
 // Invite someone to the trip.// Confirms a participant on a trip.
