@@ -29,7 +29,7 @@ func main() {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
-	fmt.Println("goodbye :)")
+	fmt.Println("🌚 Server Stoped")
 }
 
 func run(ctx context.Context) error {
@@ -91,6 +91,7 @@ func run(ctx context.Context) error {
 	errChan := make(chan error, 1)
 
 	go func() {
+		fmt.Println("😎 Server started at PORT :8080")
 		if err := srv.ListenAndServe(); err != nil {
 			errChan <- err
 		}
